@@ -46,9 +46,9 @@ class AMQPStreamConnection extends AbstractConnection
         ?AMQPConnectionConfig $config = null
     ) {
         if (func_num_args() === 17 || ($ssl_protocol !== null && $ssl_protocol instanceof AMQPConnectionConfig === false)) {
-            trigger_error(
+            trigger_deprecation('php-amqplib/php-amqplib',
+                '3.6',
                 '$ssl_protocol parameter is deprecated, use stream_context_set_option($context, \'ssl\', \'crypto_method\', $ssl_protocol) instead (see https://www.php.net/manual/en/function.stream-socket-enable-crypto.php for possible values)',
-                E_USER_DEPRECATED
             );
         } elseif ($ssl_protocol instanceof AMQPConnectionConfig) {
             $config = $ssl_protocol;
